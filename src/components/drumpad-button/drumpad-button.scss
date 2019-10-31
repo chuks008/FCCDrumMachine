@@ -1,5 +1,5 @@
 $button-width: 90px;
-$button-height: 60px;
+$button-height: 80px;
 $shadow-color: #D440E5;
 $button-color: #0D0B10;
 $select-color: orange;
@@ -12,7 +12,7 @@ $select-color: orange;
     background-color: $button-color;
     border: 1px solid $shadow-color;
     box-shadow: 2px 2px 5px $shadow-color;
-    transition: 250ms;
+    transition: 150ms;
     color: white;
     cursor: pointer;
 

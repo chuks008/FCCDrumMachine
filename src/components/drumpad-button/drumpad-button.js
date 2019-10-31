@@ -10,7 +10,7 @@ class DrumPadButton extends React.Component {
     }
 
     handleClick = () => {
-        this.props.onClick();
+        this.props.onAction(this.props.index);
         this.setState({pressed: true});
     }
 

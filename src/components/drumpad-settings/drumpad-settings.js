@@ -10,9 +10,9 @@ class DrumPadSettings extends React.Component {
     render() {
         return (
             <div id="settings-container">
-                <SwitchLabel label="Power" onToggle="" />
+                <SwitchLabel label="Power" />
                 <p className="settings-key-space">{this.props.currentKey}</p>
-                <SwitchLabel label="Bank" onToggle="" />
+                <SwitchLabel label="Bank" onAction={this.props.onModeToggle} />
             </div>
         );
     }

@@ -13,7 +13,12 @@ class DrumPad extends React.Component {
     render() {
         const drumPadButtons = this.props.keys.map((mapping, index) => {
             return (
-                <DrumPadButton clickAction={this.props.clickAction} key={mapping.key+index} keyName={mapping.key} audioFile={mapping.audioFile} />
+                <DrumPadButton 
+                    index={index} 
+                    onAction={this.props.onBtnClick} 
+                    key={mapping.key+index} 
+                    keyName={mapping.key}
+                />
             );
         })
         return (
