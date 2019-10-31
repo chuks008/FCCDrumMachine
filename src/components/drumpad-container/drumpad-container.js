@@ -18,15 +18,15 @@ const keyMappingsA = [
 ];
 
 const keyMappingsB = [
-    {key: 'q', sound:'Heater 1', audioFile: ""},
-    {key: 'w', sound:'Heater 2', audioFile: ""},
-    {key: 'e', sound:'Heater 3', audioFile: ""},
-    {key: 'a', sound:'Heater 4', audioFile: ""},
-    {key: 's', sound:'Clap', audioFile: ""},
-    {key: 'd', sound:'Open HH', audioFile: ""},
-    {key: 'z', sound:"Kick n' Hat", audioFile: ""},
-    {key: 'x', sound:'Kick', audioFile: ""},
-    {key: 'c', sound:'Closed HH', audioFile: ""}
+    {key: 'q', sound:'Heater 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"},
+    {key: 'w', sound:'Heater 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"},
+    {key: 'e', sound:'Heater 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"},
+    {key: 'a', sound:'Heater 4', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"},
+    {key: 's', sound:'Clap', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"},
+    {key: 'd', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"},
+    {key: 'z', sound:"Kick n' Hat", audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"},
+    {key: 'x', sound:'Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"},
+    {key: 'c', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"}
 ];
 
 const PowerMode = {
@@ -108,6 +108,7 @@ class DrumContainer extends React.Component {
 
     render() {
         const currentMapping = this.state.mapping;
+        console.log(currentMapping);
         
         return (
             <div id='drum-container'>

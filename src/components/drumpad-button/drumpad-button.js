@@ -14,13 +14,16 @@ class DrumPadButton extends React.Component {
         this.setState({pressed: true});
         const currentAudio = document.getElementsByClassName('key_audio')[this.props.index];
 
-        if(currentAudio.paused) {
-            currentAudio.play()
-        } else {
+        currentAudio.load();
+
+        if(!currentAudio.paused) {
             currentAudio.pause();
             currentAudio.currentTime = 0;
             currentAudio.play();
-        }
+            return;
+        } 
+
+        currentAudio.play();
     }
 
     render() {
