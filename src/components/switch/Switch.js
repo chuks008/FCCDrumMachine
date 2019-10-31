@@ -5,17 +5,22 @@ class Switch extends React.Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            pressed: true
+        }
     }
 
     toggleMode = () => {
-        this.props.onToggle();
+        if(this.props.enabled === true) {
+            this.props.onToggle();
+        }
     }
 
     render() {
         return (
-            <label className='switch'>
+            <label className={this.props.enabled ? 'switch' : 'switch switch-off'}>
                 <input type="checkbox" onClick={this.toggleMode} />
-                <span className="slider"></span>
+                <span className={this.props.enabled ? "slider" : "slider-off"}></span>
             </label>
         );
     }

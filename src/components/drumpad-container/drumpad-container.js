@@ -120,7 +120,10 @@ class DrumContainer extends React.Component {
                     <DrumPad keys={currentMapping} 
                         onBtnClick={this.onHandleClick} 
                         powerMode={this.state.powerMode} />
-                    <DrumPadSettings currentKey={currentMapping[this.state.index].sound} onModeToggle={this.toggleMode} onPowerToggle={this.togglePower} />
+                    <DrumPadSettings currentKey={currentMapping[this.state.index].sound} 
+                        powerMode={this.state.powerMode} 
+                        onModeToggle={this.toggleMode} 
+                        onPowerToggle={this.togglePower} />
                 </div>
             </div>
         );

@@ -11,7 +11,7 @@ class LabelSwitch extends React.Component {
         return (
             <div className='label-switch'>
                 <p>{this.props.label}</p>
-                <Switch onToggle={this.props.onAction} />
+                <Switch onToggle={this.props.onAction} enabled={this.props.isEnabled} />
             </div>
         );
     }
