@@ -21,13 +21,13 @@ $select-color: orange;
         margin: 0;
     }
 
-    &:active {
-        transform: scale(0.95);
-        background-color: $select-color;
-        box-shadow: 2px 2px $shadow-color;
-    }
-
     &:focus {
         outline: none;
     }
+}
+
+.pressed {
+    transform: scale(0.95) translate(4px);
+    background-color: $select-color;
+    box-shadow: 1px 1px $shadow-color;
 }

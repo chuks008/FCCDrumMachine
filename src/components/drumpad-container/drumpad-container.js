@@ -70,11 +70,13 @@ class DrumContainer extends React.Component {
 
     performClick(index) {
         console.log("Performing click event with index: ", index);
-        const keyElement = document.getElementsByClassName("drumpad-button")[index];
-        keyElement.click();
+        const keyElements = document.getElementsByClassName('drumpad-button');
+        keyElements[index].click();
+        this.setState({index: index});
     }
 
     onHandleClick(index, event) {
+        
         console.log("Index on click", index);
         this.setState({
             index: index,
