@@ -9,7 +9,6 @@ class Switch extends React.Component {
 
     toggleMode = () => {
         this.props.onToggle();
-        console.log("Bank switched");
     }
 
     render() {

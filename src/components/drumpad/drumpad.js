@@ -17,7 +17,8 @@ class DrumPad extends React.Component {
                     index={index} 
                     onAction={this.props.onBtnClick} 
                     key={mapping.key+index} 
-                    keyName={mapping.key}
+                    keyMapping={mapping}
+                    onPowerToggle={this.props.powerMode}
                 />
             );
         })

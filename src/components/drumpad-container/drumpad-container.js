@@ -1,21 +1,20 @@
 import React from 'react';
 import '../drumpad/drumpad.scss';
-import DrumPadButton from '../drumpad-button/drumpad-button';
 import DrumPadSettings from '../drumpad-settings/drumpad-settings';
 import DrumPad from '../drumpad/drumpad';
 import fire from '../../fire.jpg';
 import './drumpad-container.scss';
 
 const keyMappingsA = [
-    {key: 'q', sound:'Chord 1', audioFile: ""},
-    {key: 'w', sound:'Chord 2', audioFile: ""},
-    {key: 'e', sound:'Chord 3', audioFile: ""},
-    {key: 'a', sound:'Shaker', audioFile: ""},
-    {key: 's', sound:'Open HH', audioFile: ""},
-    {key: 'd', sound:'Closed HH', audioFile: ""},
-    {key: 'z', sound:'Punchy Kick', audioFile: ""},
-    {key: 'x', sound:'Side Kick', audioFile: ""},
-    {key: 'c', sound:'Snare', audioFile: ""}
+    {key: 'q', sound:'Chord 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"},
+    {key: 'w', sound:'Chord 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"},
+    {key: 'e', sound:'Chord 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"},
+    {key: 'a', sound:'Shaker', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"},
+    {key: 's', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"},
+    {key: 'd', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"},
+    {key: 'z', sound:'Punchy Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"},
+    {key: 'x', sound:'Side Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"},
+    {key: 'c', sound:'Snare', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"}
 ];
 
 const keyMappingsB = [
@@ -30,8 +29,15 @@ const keyMappingsB = [
     {key: 'c', sound:'Closed HH', audioFile: ""}
 ];
 
-// codes for characters q, w, e, a, s, d, z, x, c 
-const keyboardCodes = [81,87,69,65,83,68,90,88,67] 
+const PowerMode = {
+    ON: "on",
+    OFF: "off"
+};
+
+const BankMode = {
+    DEFAULT: "default",
+    ALTERNATIVE: "alternative"
+};
 
 class DrumContainer extends React.Component {
 
@@ -40,63 +46,68 @@ class DrumContainer extends React.Component {
         this.state = {
             index: 0,
             mapping: keyMappingsA,
-            defaultMode: "default"
+            defaultMode: BankMode.DEFAULT,
+            powerMode: PowerMode.OFF
         }
 
         this.onHandleClick = this.onHandleClick.bind(this);
         this.handleOnKeyPress = this.handleOnKeyPress.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
+        this.togglePower = this.togglePower.bind(this);
     }
 
     handleOnKeyPress(event) {
-        let keyCode = event.keyCode;
-        if(!keyboardCodes.includes(keyCode)) {
-            return;
-        }
 
-        this.performClick(keyboardCodes.indexOf(keyCode));
+        if(this.state.powerMode === PowerMode.ON) {
+            let keyMapping = this.state.mapping.filter(mapping => {
+                return mapping.key === event.key ? mapping : null;
+            })[0];
+    
+            if(keyMapping === undefined) {
+                return;
+            }
+    
+            this.performClick(this.state.mapping.indexOf(keyMapping));
+        }
     }
 
     onHandleClick(index) {
-        
-        console.log("Index on click", index);
+            
         this.setState({
             index: index
-        })
-
-        document.getElementById('audio').play();
+        });
     }
 
     toggleMode() {
         
         this.setState(
             {
-                defaultMode: this.state.defaultMode === "default" ? "alternative" : "default",
-                mapping: this.state.defaultMode === "default" ? keyMappingsB : keyMappingsA
+                defaultMode: this.state.defaultMode === BankMode.DEFAULT ? BankMode.ALTERNATIVE : BankMode.DEFAULT,
+                mapping: this.state.defaultMode === BankMode.DEFAULT ? keyMappingsB : keyMappingsA
             }
         );
     }
 
+    togglePower() {
+        this.setState({powerMode: this.state.powerMode === PowerMode.OFF ? PowerMode.ON : PowerMode.OFF});
+        if(this.state.powerMode === PowerMode.ON) {
+            document.removeEventListener("keydown", this.handleOnKeyPress);
+        } else {
+            document.addEventListener("keydown", this.handleOnKeyPress);
+        }
+    }
+    
     performClick(index) {
-        console.log("Performing click event with index: ", index);
-        const keyElements = document.getElementsByClassName('drumpad-button');
-        keyElements[index].click();
-        this.setState({index: index});
-    }
 
-    componentDidMount() {
-        document.addEventListener("keydown", this.handleOnKeyPress);
-    }
-
-    componentWillUnmount() {
-        document.removeEventListener("keydown", this.handleOnKeyPress);
+        if(this.state.powerMode === PowerMode.ON) {
+            const keyElements = document.getElementsByClassName('drumpad-button');
+            keyElements[index].click();
+            this.setState({index: index});
+        }
     }
 
     render() {
         const currentMapping = this.state.mapping;
-
-        console.log("Changing toggle mode: ", this.state.mapping);
-        console.log("Is default mode: ", this.state.defaultMode);
         
         return (
             <div id='drum-container'>
@@ -105,11 +116,10 @@ class DrumContainer extends React.Component {
                     <img src={fire}/>
                 </div>
                 <div id='inner-drum-container'>
-                    <audio id='audio'>
-                        <source src={currentMapping[this.state.index].audioFile} />
-                    </audio>
-                    <DrumPad keys={currentMapping} onBtnClick={this.onHandleClick} />
-                    <DrumPadSettings currentKey={currentMapping[this.state.index].sound} onModeToggle={this.toggleMode} />
+                    <DrumPad keys={currentMapping} 
+                        onBtnClick={this.onHandleClick} 
+                        powerMode={this.state.powerMode} />
+                    <DrumPadSettings currentKey={currentMapping[this.state.index].sound} onModeToggle={this.toggleMode} onPowerToggle={this.togglePower} />
                 </div>
             </div>
         );
