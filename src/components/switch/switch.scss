@@ -1,4 +1,4 @@
-$switcher-color: #ccc;
+$switcher-color: #0D0B10;
 $switch-width: 60px;
 $switch-height: 34px;
 
@@ -23,9 +23,8 @@ $switch-height: 34px;
     right: 0;
     bottom: 0;
     background-color: $switcher-color;
-    border-radius: $switch-height;
-    -webkit-transition: .4s;
-    transition: .4s;
+    -webkit-transition: .2s;
+    transition: .2s;
 
     &:before {
         position: absolute;
@@ -35,18 +34,17 @@ $switch-height: 34px;
         left: 4px;
         bottom: 4px;
         background-color: white;
-        -webkit-transition: .4s;
-        transition: .4s;
-        border-radius: 50%;
+        -webkit-transition: .2s;
+        transition: .2s;
     }
 }
 
 input:checked+.slider {
-    background-color: #2196F3;
+    background-color: magenta;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px #2196F3;
+    box-shadow: 0 0 1px magenta;
 }
 
 input:checked+.slider:before {

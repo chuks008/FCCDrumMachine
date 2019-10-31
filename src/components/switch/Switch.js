@@ -1,5 +1,5 @@
 import React from 'react';
-import '../styles/switch.scss'; // switch css
+import './switch.scss'; // switch css
 
 class Switch extends React.Component {
     render() {

@@ -1,0 +1,33 @@
+$button-width: 90px;
+$button-height: 60px;
+$shadow-color: #D440E5;
+$button-color: #0D0B10;
+$select-color: orange;
+
+.drumpad-button {
+    width: $button-width;
+    height: $button-height;
+    text-align: center;
+    border-radius: 10%;
+    background-color: $button-color;
+    border: 1px solid $shadow-color;
+    box-shadow: 2px 2px 5px $shadow-color;
+    transition: 250ms;
+    color: white;
+    cursor: pointer;
+
+    p {
+        font-size: 1.5em;
+        margin: 0;
+    }
+
+    &:active {
+        transform: scale(0.95);
+        background-color: $select-color;
+        box-shadow: 2px 2px $shadow-color;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}

@@ -1,0 +1,33 @@
+#drum-container {
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    background: rgba(20, 20, 20, 1);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 5px 5px #D440E5;
+    color: white;
+    margin: 0 auto;
+}
+
+#inner-drum-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+}
+
+#board-logo {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+
+    p {
+        margin-right: 10px;
+    }
+
+    img {
+        width: 30px;
+        height: 30px;
+    }
+}
