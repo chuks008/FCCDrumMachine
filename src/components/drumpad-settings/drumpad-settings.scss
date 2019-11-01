@@ -1,8 +1,12 @@
+$shadow-color: #D440E5;
+$button-color: #0D0B10;
+
 .settings-key-space {
     width: 200px;
     height: 50px;
     text-align: center;
-    background: gray;
+    background: transparent;
+    border: 1px solid $shadow-color;
     line-height: 50px;
     margin: 20px 0;
     font-weight: 800;

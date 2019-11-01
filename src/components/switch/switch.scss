@@ -1,4 +1,5 @@
 $switcher-color: #0D0B10;
+$highlight-color: magenta;
 $switch-width: 60px;
 $switch-height: 34px;
 
@@ -64,11 +65,11 @@ $switch-height: 34px;
 }
 
 input:checked+.slider {
-    background-color: magenta;
+    background-color: $highlight-color;
 }
 
 input:focus+.slider {
-    box-shadow: 0 0 1px magenta;
+    box-shadow: 0 0 1px $highlight-color;
 }
 
 .switch-off {

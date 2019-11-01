@@ -2,7 +2,7 @@ import React from 'react';
 import '../drumpad/drumpad.scss';
 import DrumPadSettings from '../drumpad-settings/drumpad-settings';
 import DrumPad from '../drumpad/drumpad';
-import fire from '../../fire.jpg';
+import music from '../../music.png';
 import './drumpad-container.scss';
 
 const keyMappingsA = [
@@ -113,8 +113,9 @@ class DrumContainer extends React.Component {
         return (
             <div id='drum-container'>
                 <div id='board-logo' >
-                    <p>My SoundBoard</p>
-                    <img src={fire}/>
+                    <img src={music}/>
+                    <p> MX Sounds</p>
+                    <img src={music}/>
                 </div>
                 <div id='inner-drum-container'>
                     <DrumPad keys={currentMapping} 
