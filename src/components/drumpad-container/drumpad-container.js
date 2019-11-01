@@ -44,16 +44,18 @@ class DrumContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            index: 0,
+            keyIndex: 0,
             mapping: keyMappingsA,
             defaultMode: BankMode.DEFAULT,
-            powerMode: PowerMode.OFF
+            powerMode: PowerMode.OFF,
+            currentDisplay: "",
         }
 
         this.onHandleClick = this.onHandleClick.bind(this);
         this.handleOnKeyPress = this.handleOnKeyPress.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
         this.togglePower = this.togglePower.bind(this);
+        this.onVolumeChange = this.onVolumeChange.bind(this);
     }
 
     handleOnKeyPress(event) {
@@ -72,10 +74,24 @@ class DrumContainer extends React.Component {
     }
 
     onHandleClick(index) {
-            
+        const currentKeyMapping = this.state.mapping;
         this.setState({
-            index: index
+            keyIndex: index,
+            currentDisplay: currentKeyMapping[index].sound
         });
+
+        const currentAudio = document.getElementById('key_audio');
+
+        currentAudio.load();
+
+        if(!currentAudio.paused) {
+            currentAudio.pause();
+            currentAudio.currentTime = 0;
+            currentAudio.play();
+            return;
+        } 
+
+        currentAudio.play();
     }
 
     toggleMode() {
@@ -100,10 +116,15 @@ class DrumContainer extends React.Component {
     performClick(index) {
 
         if(this.state.powerMode === PowerMode.ON) {
+            this.setState({keyIndex: index});
             const keyElements = document.getElementsByClassName('drumpad-button');
             keyElements[index].click();
-            this.setState({index: index});
         }
+    }
+
+    onVolumeChange(volumeValue) {
+        const currentAudio = document.getElementById('key_audio');
+        currentAudio.volume = volumeValue / 100;
     }
 
     render() {
@@ -121,11 +142,15 @@ class DrumContainer extends React.Component {
                     <DrumPad keys={currentMapping} 
                         onBtnClick={this.onHandleClick} 
                         powerMode={this.state.powerMode} />
-                    <DrumPadSettings currentKey={currentMapping[this.state.index].sound} 
+                    <DrumPadSettings currentKey={this.state.currentDisplay} 
                         powerMode={this.state.powerMode} 
                         onModeToggle={this.toggleMode} 
-                        onPowerToggle={this.togglePower} />
+                        onPowerToggle={this.togglePower}
+                        onVolumeSlide={this.onVolumeChange} />
                 </div>
+                <audio id='key_audio'>
+                        <source src={currentMapping[this.state.keyIndex].audioFile} />
+                </audio>
             </div>
         );
     }

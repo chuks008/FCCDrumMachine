@@ -1,12 +1,34 @@
 import React from 'react';
 import './volume-slider.scss';
+import Volume from '../../speaker-filled-audio-tool.svg'
 
 class VolumeControl extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            currentVolume: 50,
+        }
+    }
+
+    onVolumeChange = (e) => {
+        this.props.onVolumeChange(this.state.currentVolume);
+        this.setState({currentVolume: e.target.value})
+    }
 
     render() {
         return(
             <div id='slider-container'>
-                    <input className='volume-slider' type='range' min='0' max='100' defaultValue='50' />
+                    <input name='volume' 
+                        className='volume-slider' 
+                        type='range' min='0' 
+                        max='100' 
+                        defaultValue='50'
+                        onChange={this.onVolumeChange} />
+                    <div id='volume-container'>
+                        <img src={Volume} />
+                        <label for='volume'>{this.state.currentVolume}</label>
+                    </div>
             </div>
         );
     }
