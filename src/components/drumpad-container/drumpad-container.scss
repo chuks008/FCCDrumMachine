@@ -8,9 +8,12 @@ $button-color: #0D0B10;
     background: rgba(20, 20, 20, 1);
     padding: 20px;
     border-radius: 10px;
-    box-shadow: 5px 5px #D440E5;
+    border: 1px solid $shadow-color;
     color: white;
-    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate3d(-50%, -50%, 0);
 }
 
 #inner-drum-container {
@@ -39,6 +42,8 @@ $button-color: #0D0B10;
     }
 }
 
-// #outer-container {
-//     background: rgb(20, 20, 20);
-// }
+body {
+    background: rgb(10, 10, 10);
+    margin: 0;
+    padding: 0;
+}
