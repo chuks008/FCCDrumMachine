@@ -6,27 +6,27 @@ import music from '../../music.png';
 import './drumpad-container.scss';
 
 const keyMappingsA = [
-    {key: 'q', sound:'Chord 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"},
-    {key: 'w', sound:'Chord 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"},
-    {key: 'e', sound:'Chord 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"},
-    {key: 'a', sound:'Shaker', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"},
-    {key: 's', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"},
-    {key: 'd', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"},
-    {key: 'z', sound:'Punchy Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"},
-    {key: 'x', sound:'Side Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"},
-    {key: 'c', sound:'Snare', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"}
+    {key: 'Q', sound:'Chord 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_1.mp3"},
+    {key: 'W', sound:'Chord 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_2.mp3"},
+    {key: 'E', sound:'Chord 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Chord_3.mp3"},
+    {key: 'A', sound:'Shaker', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Give_us_a_light.mp3"},
+    {key: 'S', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dry_Ohh.mp3"},
+    {key: 'D', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Bld_H1.mp3"},
+    {key: 'Z', sound:'Punchy Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/punchy_kick_1.mp3"},
+    {key: 'X', sound:'Side Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/side_stick_1.mp3"},
+    {key: 'C', sound:'Snare', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Brk_Snr.mp3"}
 ];
 
 const keyMappingsB = [
-    {key: 'q', sound:'Heater 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"},
-    {key: 'w', sound:'Heater 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"},
-    {key: 'e', sound:'Heater 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"},
-    {key: 'a', sound:'Heater 4', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"},
-    {key: 's', sound:'Clap', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"},
-    {key: 'd', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"},
-    {key: 'z', sound:"Kick n' Hat", audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"},
-    {key: 'x', sound:'Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"},
-    {key: 'c', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"}
+    {key: 'Q', sound:'Heater 1', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-1.mp3"},
+    {key: 'W', sound:'Heater 2', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-2.mp3"},
+    {key: 'E', sound:'Heater 3', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-3.mp3"},
+    {key: 'A', sound:'Heater 4', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-4_1.mp3"},
+    {key: 'S', sound:'Clap', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Heater-6.mp3"},
+    {key: 'D', sound:'Open HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Dsc_Oh.mp3"},
+    {key: 'Z', sound:"Kick n' Hat", audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Kick_n_Hat.mp3"},
+    {key: 'X', sound:'Kick', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/RP4_KICK_1.mp3"},
+    {key: 'C', sound:'Closed HH', audioFile: "https://s3.amazonaws.com/freecodecamp/drums/Cev_H2.mp3"}
 ];
 
 const PowerMode = {
@@ -60,7 +60,7 @@ class DrumContainer extends React.Component {
 
         if(this.state.powerMode === PowerMode.ON) {
             let keyMapping = this.state.mapping.filter(mapping => {
-                return mapping.key === event.key ? mapping : null;
+                return mapping.key.toLowerCase() === event.key ? mapping : null;
             })[0];
     
             if(keyMapping === undefined) {
