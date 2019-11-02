@@ -13,7 +13,7 @@ class DrumPadSettings extends React.Component {
         return (
             <div id="settings-container">
                 <SwitchLabel label="Power" onAction={this.props.onPowerToggle} isEnabled={true} />
-                <p className={isEnabled ? "settings-key-space" : "settings-key-space disabled-settings-key"}>{this.props.currentKey}</p>
+                <p id='display' className={isEnabled ? "settings-key-space" : "settings-key-space disabled-settings-key"}>{this.props.currentKey}</p>
                 <VolumeControl onVolumeChange={this.props.onVolumeSlide} isEnabled={isEnabled} />
                 <SwitchLabel label="Bank" onAction={this.props.onModeToggle} isEnabled={isEnabled} />
             </div>

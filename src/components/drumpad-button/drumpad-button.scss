@@ -33,7 +33,7 @@ $select-color: magenta;
     box-shadow: 1px 1px $shadow-color;
 }
 
-.drumpad-button-off {
+.drum-pad-off {
     @extend .drum-pad;
     opacity: 0.4;
 }
