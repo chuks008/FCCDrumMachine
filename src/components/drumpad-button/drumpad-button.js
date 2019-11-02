@@ -10,8 +10,7 @@ class DrumPadButton extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.props.currentVolume);
-        const currentAudio = document.querySelector(`#audio-${this.props.index}`);
+        const currentAudio = document.querySelector(`#${this.props.keyMapping.key}`);
         currentAudio.volume = this.props.currentVolume / 100;
     }
 
@@ -19,7 +18,7 @@ class DrumPadButton extends React.Component {
         if(this.props.onPowerToggle !== 'off') {
             this.props.onAction(this.props.index);
             this.setState({pressed: true});
-            const currentAudio = document.querySelector(`#audio-${this.props.index}`);
+            const currentAudio = document.querySelector(`#${this.props.keyMapping.key}`);
             currentAudio.load();
 
             if(!currentAudio.paused) {
@@ -41,12 +40,12 @@ class DrumPadButton extends React.Component {
                 onClick={this.handleClick}
                 disabled={poweredOff}
                 onTransitionEnd = {() => this.setState({pressed: false})}
-                className={this.props.onPowerToggle === "off" ? 'drumpad-button-off' : pressed ? 'drumpad-button pressed' : 'drumpad-button'}>
+                className={this.props.onPowerToggle === "off" ? 'drumpad-button-off' : pressed ? 'drum-pad pressed' : 'drum-pad'}>
                 <p>{this.props.keyMapping.key}</p>
                 <audio 
-                    id={`audio-${this.props.index}`}>
-                        <source src={this.props.keyMapping.audioFile} />
-                </audio>
+                    className='clip'
+                    id={this.props.keyMapping.key} 
+                    src={this.props.keyMapping.audioFile}/>
             </div>
         );
     }

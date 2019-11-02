@@ -4,7 +4,7 @@ $shadow-color: #D440E5;
 $button-color: #0D0B10;
 $select-color: magenta;
 
-.drumpad-button {
+.drum-pad {
     width: $button-width;
     height: $button-height;
     text-align: center;
@@ -34,6 +34,6 @@ $select-color: magenta;
 }
 
 .drumpad-button-off {
-    @extend .drumpad-button;
+    @extend .drum-pad;
     opacity: 0.4;
 }

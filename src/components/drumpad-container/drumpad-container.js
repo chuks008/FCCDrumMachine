@@ -108,7 +108,7 @@ class DrumContainer extends React.Component {
 
         if(this.state.powerMode === PowerMode.ON) {
             this.setState({keyIndex: index});
-            const keyElements = document.getElementsByClassName('drumpad-button');
+            const keyElements = document.getElementsByClassName('drum-pad');
             keyElements[index].click();
         }
     }
@@ -123,7 +123,7 @@ class DrumContainer extends React.Component {
         console.log(currentMapping);
         
         return (
-            <div id='drum-container'>
+            <div id='drum-machine'>
                 <div id='board-logo' >
                     <img src={music}/>
                     <p> MX Sounds</p>
