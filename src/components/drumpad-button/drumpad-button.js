@@ -44,8 +44,7 @@ class DrumPadButton extends React.Component {
                 className={this.props.onPowerToggle === "off" ? 'drumpad-button-off' : pressed ? 'drumpad-button pressed' : 'drumpad-button'}>
                 <p>{this.props.keyMapping.key}</p>
                 <audio 
-                    id={`audio-${this.props.index}`}
-                    onVolumeChange={this.onAudioVolumeChanged}>
+                    id={`audio-${this.props.index}`}>
                         <source src={this.props.keyMapping.audioFile} />
                 </audio>
             </div>
