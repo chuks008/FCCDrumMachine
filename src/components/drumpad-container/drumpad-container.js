@@ -65,7 +65,7 @@ class DrumContainer extends React.Component {
 
         if(this.state.powerMode === PowerMode.ON) {
             let keyMapping = this.state.mapping.filter(mapping => {
-                return mapping.key.toLowerCase() === event.key ? mapping : null;
+                return mapping.key.toUpperCase() === event.key.toUpperCase() ? mapping : null;
             })[0];
     
             if(keyMapping === undefined) {

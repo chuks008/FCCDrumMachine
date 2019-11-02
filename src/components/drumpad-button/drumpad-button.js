@@ -36,7 +36,8 @@ class DrumPadButton extends React.Component {
         const {pressed} = this.state;
         const poweredOff = this.props.onPowerToggle === "off";
         return (
-            <div
+            <button
+                type="button"
                 id={this.props.keyMapping.sound} 
                 onClick={this.handleClick}
                 disabled={poweredOff}
@@ -47,7 +48,7 @@ class DrumPadButton extends React.Component {
                     id={this.props.keyMapping.key} 
                     className='clip'
                     src={this.props.keyMapping.audioFile}/>
-            </div>
+            </button>
         );
     }
 }

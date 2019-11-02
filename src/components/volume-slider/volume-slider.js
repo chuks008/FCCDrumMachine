@@ -31,7 +31,7 @@ class VolumeControl extends React.Component {
                         onChange={this.onVolumeChange} />
                     <div id='volume-container' className={this.props.isEnabled ? '' : 'disabled'}>
                         <img src={Volume} />
-                        <label for='volume'>{this.state.currentVolume}</label>
+                        <label>{this.state.currentVolume}</label>
                     </div>
             </div>
         );
