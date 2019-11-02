@@ -52,6 +52,8 @@ class DrumContainer extends React.Component {
             currentVolume: 50
         }
 
+        this.baseState = this.state;
+
         this.onHandleClick = this.onHandleClick.bind(this);
         this.handleOnKeyPress = this.handleOnKeyPress.bind(this);
         this.toggleMode = this.toggleMode.bind(this);
@@ -96,6 +98,7 @@ class DrumContainer extends React.Component {
         this.setState({powerMode: this.state.powerMode === PowerMode.OFF ? PowerMode.ON : PowerMode.OFF});
         if(this.state.powerMode === PowerMode.ON) {
             document.removeEventListener("keydown", this.handleOnKeyPress);
+            this.setState(this.baseState);
         } else {
             document.addEventListener("keydown", this.handleOnKeyPress);
         }

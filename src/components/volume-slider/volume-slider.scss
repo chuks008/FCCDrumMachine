@@ -13,6 +13,10 @@ $button-color: #0D0B10;
     margin-bottom: 20px;
 }
 
+.disabled {
+    opacity: 0.4;
+}
+
 .volume-slider::-webkit-slider-thumb {
     -webkit-appearance: none;
     appearance: none;

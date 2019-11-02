@@ -18,16 +18,18 @@ class VolumeControl extends React.Component {
     }
 
     render() {
+        const isVolumeEnabled = this.props.isEnabled;
         return(
             <div id='slider-container'>
                     <input name='volume' 
-                        className='volume-slider' 
+                        className={ isVolumeEnabled ? 'volume-slider' : 'volume-slider disabled'}
+                        disabled={!isVolumeEnabled}
                         type='range' min='0' 
                         max='100' 
                         defaultValue='50'
                         step="10"
                         onChange={this.onVolumeChange} />
-                    <div id='volume-container'>
+                    <div id='volume-container' className={this.props.isEnabled ? '' : 'disabled'}>
                         <img src={Volume} />
                         <label for='volume'>{this.state.currentVolume}</label>
                     </div>

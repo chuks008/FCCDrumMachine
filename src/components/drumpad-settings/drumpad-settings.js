@@ -9,12 +9,13 @@ class DrumPadSettings extends React.Component {
     }
 
     render() {
+        const isEnabled = this.props.powerMode === 'off' ? false : true;
         return (
             <div id="settings-container">
                 <SwitchLabel label="Power" onAction={this.props.onPowerToggle} isEnabled={true} />
-                <p className="settings-key-space">{this.props.currentKey}</p>
-                <VolumeControl onVolumeChange={this.props.onVolumeSlide} />
-                <SwitchLabel label="Bank" onAction={this.props.onModeToggle} isEnabled={this.props.powerMode === 'off' ? false : true} />
+                <p className={isEnabled ? "settings-key-space" : "settings-key-space disabled-settings-key"}>{this.props.currentKey}</p>
+                <VolumeControl onVolumeChange={this.props.onVolumeSlide} isEnabled={isEnabled} />
+                <SwitchLabel label="Bank" onAction={this.props.onModeToggle} isEnabled={isEnabled} />
             </div>
         );
     }
