@@ -18,14 +18,13 @@ class DrumPadButton extends React.Component {
         const {pressed} = this.state;
         const poweredOff = this.props.onPowerToggle === "off";
         return (
-            <button
-                type="button"
+            <div
                 onClick={this.handleClick}
                 disabled={poweredOff}
                 onTransitionEnd = {() => this.setState({pressed: false})}
                 className={this.props.onPowerToggle === "off" ? 'drumpad-button-off' : pressed ? 'drumpad-button pressed' : 'drumpad-button'}>
                 <p>{this.props.keyMapping.key}</p>
-            </button>
+            </div>
         );
     }
 }
