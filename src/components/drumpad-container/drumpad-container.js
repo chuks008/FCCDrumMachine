@@ -1,5 +1,4 @@
 import React from 'react';
-import '../drumpad/drumpad.scss';
 import DrumPadSettings from '../drumpad-settings/drumpad-settings';
 import DrumPad from '../drumpad/drumpad';
 import music from '../../music.png';
