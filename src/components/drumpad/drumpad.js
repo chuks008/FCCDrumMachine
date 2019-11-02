@@ -19,6 +19,7 @@ class DrumPad extends React.Component {
                     key={mapping.key+index} 
                     keyMapping={mapping}
                     onPowerToggle={this.props.powerMode}
+                    currentVolume={this.props.currentVolume}
                 />
             );
         })

@@ -12,8 +12,9 @@ class VolumeControl extends React.Component {
     }
 
     onVolumeChange = (e) => {
-        this.props.onVolumeChange(this.state.currentVolume);
-        this.setState({currentVolume: e.target.value})
+        const currentVolume = e.target.value;
+        this.props.onVolumeChange(currentVolume);
+        this.setState({currentVolume})
     }
 
     render() {
@@ -24,6 +25,7 @@ class VolumeControl extends React.Component {
                         type='range' min='0' 
                         max='100' 
                         defaultValue='50'
+                        step="10"
                         onChange={this.onVolumeChange} />
                     <div id='volume-container'>
                         <img src={Volume} />

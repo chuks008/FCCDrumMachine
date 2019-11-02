@@ -49,6 +49,7 @@ class DrumContainer extends React.Component {
             defaultMode: BankMode.DEFAULT,
             powerMode: PowerMode.OFF,
             currentDisplay: "",
+            currentVolume: 50
         }
 
         this.onHandleClick = this.onHandleClick.bind(this);
@@ -79,19 +80,6 @@ class DrumContainer extends React.Component {
             keyIndex: index,
             currentDisplay: currentKeyMapping[index].sound
         });
-
-        const currentAudio = document.getElementById('key_audio');
-
-        currentAudio.load();
-
-        if(!currentAudio.paused) {
-            currentAudio.pause();
-            currentAudio.currentTime = 0;
-            currentAudio.play();
-            return;
-        } 
-
-        currentAudio.play();
     }
 
     toggleMode() {
@@ -123,8 +111,8 @@ class DrumContainer extends React.Component {
     }
 
     onVolumeChange(volumeValue) {
-        const currentAudio = document.getElementById('key_audio');
-        currentAudio.volume = volumeValue / 100;
+        this.setState({currentVolume: volumeValue});
+        console.log("Current volume on container", volumeValue);
     }
 
     render() {
@@ -141,16 +129,14 @@ class DrumContainer extends React.Component {
                 <div id='inner-drum-container'>
                     <DrumPad keys={currentMapping} 
                         onBtnClick={this.onHandleClick} 
-                        powerMode={this.state.powerMode} />
+                        powerMode={this.state.powerMode}
+                        currentVolume={this.state.currentVolume} />
                     <DrumPadSettings currentKey={this.state.currentDisplay} 
                         powerMode={this.state.powerMode} 
                         onModeToggle={this.toggleMode} 
                         onPowerToggle={this.togglePower}
                         onVolumeSlide={this.onVolumeChange} />
                 </div>
-                <audio id='key_audio'>
-                        <source src={currentMapping[this.state.keyIndex].audioFile} />
-                </audio>
             </div>
         );
     }
